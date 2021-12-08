@@ -1,30 +1,34 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+<div>
+  <div class="navbar has-shadow has-text-centered mb-6">
+    <div class="havbar-brand">
+      <router-link to="/" class="navbar-item">
+        <img src="./assets/logo.png" alt="logo" style="max-height: 80px; height: 80px;">
+      </router-link>
+      <a class="navbar-burger" id="burger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+    <div class="navbar-item is-size-3">MI UTM generator</div>
   </div>
+
+  
   <router-view/>
+</div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+export default {
+  data() {
+    return {
+      logo: require('./assets/mi-logo.svg'),
+    };
+  },
+};
+</script>
 
-#nav {
-  padding: 30px;
-}
+<style scoped>
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
