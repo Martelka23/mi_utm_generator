@@ -5,7 +5,7 @@
     <div class="field has-addons">
       <p class="control">
         <span class="select is-rounded is-medium">
-          <select v-model="protocol">
+          <select :value="modelValue.protocol" @change="change('protocol', $event.target.value)">
             <option value="https://">https://</option>
             <option value="http://">http://</option>
           </select>
@@ -16,7 +16,8 @@
           type="text" 
           class="input is-rounded is-medium" 
           placeholder="site.ru"
-          @input="inputHandler"
+          :value="modelValue.site"
+          @input="change('site', $event.target.value)" 
         >
       </p>
     </div>
@@ -29,15 +30,18 @@ export default {
   name: 'SiteInput',
 
   props: {
-    modelValue: Object,
+    modelValue: Object
   },
 
+  emits: ['update:modelValue'],
+
   methods: {
-    inputHandler(event) {
-      this.$emit('update:modelValue', event.target.value);
+    change(key, value) {
+      this.$emit('update:modelValue', { ...this.modelValue, [key]: value });
     }
-  }
-}
+  },
+
+};
 </script>
 
 <style>

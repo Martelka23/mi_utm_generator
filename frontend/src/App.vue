@@ -5,13 +5,29 @@
       <router-link to="/" class="navbar-item">
         <img src="./assets/logo.png" alt="logo" style="max-height: 80px; height: 80px;">
       </router-link>
-      <a class="navbar-burger" id="burger">
+      <a class="navbar-burger" id="burger" @click="showMobileMenu = !showMobileMenu">
         <span></span>
         <span></span>
         <span></span>
       </a>
     </div>
-    <div class="navbar-item is-size-3">MI UTM generator</div>
+    <div class="navbar-start">
+      <div class="navbar-item is-size-3">MI UTM Генератор</div>
+    </div>
+    <div class="navbar-menu" :class="{'is-active': showMobileMenu }">
+      <div class="navbar-end">
+        <router-link 
+          to="/" 
+          class="navbar-item is-size-4 mr-5"
+          :class="{'underliner': !isMobile}"
+        >Генератор</router-link>
+        <router-link 
+          to="/contacts" 
+          class="navbar-item is-size-4 mr-5"
+          :class="{'underliner': !isMobile}"
+        >Информация</router-link>
+      </div>
+    </div>
   </div>
 
   
@@ -23,12 +39,45 @@
 export default {
   data() {
     return {
-      logo: require('./assets/mi-logo.svg'),
+      showMobileMenu: false,
     };
   },
+
+  computed: {
+    isMobile() {
+      return window.innerWidth <= 1024;
+    }
+  }
 };
 </script>
 
 <style scoped>
+.underliner:after {
+  content: "";
+  position: absolute;
+  background-color: #de2617;
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: 20px;
+  transition: 0.3s;
+}
 
+.underliner:hover {
+  color: black;
+  background-color: #fff;
+}
+
+.underliner:hover:after {
+  width: 100%;
+}
+
+/* .underliner.router-link-active:after {
+  width: 100%;
+} */
+
+div.navbar-end a.navbar-item:focus {
+  color: black;
+  background: none;
+}
 </style>
