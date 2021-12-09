@@ -4,7 +4,7 @@
     <div class="subtitle is-size-3">Адрес целевой страницы</div>
     <div class="field has-addons">
       <p class="control">
-        <span class="select is-rounded is-medium">
+        <span class="select is-medium">
           <select :value="modelValue.protocol" @change="change('protocol', $event.target.value)">
             <option value="https://">https://</option>
             <option value="http://">http://</option>
@@ -15,6 +15,7 @@
         <input 
           type="text" 
           class="input is-rounded is-medium" 
+          id="input"
           placeholder="site.ru"
           :value="modelValue.site"
           @input="change('site', $event.target.value)" 
@@ -44,6 +45,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+select:focus,
+input:focus {
+  border-color: black !important;
+  box-shadow: 0px 0px 2px black !important;
+}
+
 
 </style>

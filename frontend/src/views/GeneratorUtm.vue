@@ -147,7 +147,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+$input-focus-color: red;
+
 .column {
   padding: 0;
 }
@@ -172,4 +174,5 @@ export default {
   background-color: #de2617;
   color: white;
 }
+
 </style>
