@@ -48,7 +48,8 @@
           type="text" 
           class="input is-rounded is-medium" 
           readonly
-          v-model="resultLink"  
+          v-model="resultLink"
+          style="word-break: break-word;"
         >
       </p>
     </div>
@@ -78,7 +79,7 @@ export default {
         protocol: 'https://',
         site: '',
       },
-      trafficSource: '1',
+      trafficSource: 'Собственный',
       obligatoryParams: {
         source: '',
         medium: '',
