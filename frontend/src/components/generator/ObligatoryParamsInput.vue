@@ -49,7 +49,7 @@ export default {
 
   methods: {
     change(key, value) {
-      this.$emit('update:modelValue', {...this.modelValue, [key]: value});
+      this.$emit('update:modelValue', {...this.modelValue, [key]: value.trim()});
     }
   }
 }

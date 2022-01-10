@@ -3,7 +3,7 @@
   <div class="navbar has-shadow has-text-centered mb-6">
     <div class="havbar-brand">
       <router-link to="/" class="navbar-item">
-        <img src="./assets/logo.png" alt="logo" style="max-height: 80px; height: 80px;">
+        <img src="./assets/images/logo.png" alt="logo" style="max-height: 80px; height: 80px;">
       </router-link>
       <a class="navbar-burger" id="burger" @click="showMobileMenu = !showMobileMenu">
         <span></span>
@@ -22,7 +22,7 @@
           :class="{'underliner': !isMobile}"
         >Генератор</router-link>
         <router-link 
-          to="/contacts" 
+          to="/information" 
           class="navbar-item is-size-4 mr-5"
           :class="{'underliner': !isMobile}"
         >Информация</router-link>

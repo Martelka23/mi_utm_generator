@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Contacts from '../views/Contacts.vue'
+import Information from '../views/Information.vue'
 import GeneratorUtm from '../views/GeneratorUtm.vue'
 
 const routes = [
@@ -10,9 +10,9 @@ const routes = [
     component: GeneratorUtm
   },
   {
-    path: '/contacts',
-    name: 'Contacts',
-    component: Contacts
+    path: '/information',
+    name: 'Information',
+    component: Information
   }
 ]
 

@@ -7,7 +7,7 @@
     </div>
 
     <div class="column is-6">
-      <source-input v-model="trafficSource"></source-input>
+      <source-input v-model="trafficSource" @changed="changeTraffic"></source-input>
     </div>
   </div>
   
@@ -58,10 +58,10 @@
 </template>
 
 <script>
-import SiteInput from '../components/SiteInput.vue'
-import SourceInput from '../components/SourceInput.vue';
-import OptionalParamsInput from '../components/OptionalParamsInput.vue';
-import ObligatoryParamsInput from '../components/ObligatoryParamsInput.vue';
+import SiteInput from '../components/generator/SiteInput.vue'
+import SourceInput from '../components/generator/SourceInput.vue';
+import OptionalParamsInput from '../components/generator/OptionalParamsInput.vue';
+import ObligatoryParamsInput from '../components/generator/ObligatoryParamsInput.vue';
 
 export default {
   name: 'GeneratorUtm',
@@ -89,42 +89,68 @@ export default {
         content: '',
         term: '',
       },
-      copied: false
+      copied: false,
+      traffics: {
+        'Яндекс Директ': {
+          source: 'yandex',
+          medium: 'cpc',
+          campaign: '{campaign_id}',
+          content: '{ad_id}',
+          term: '{keyword}'
+        }
+      }
     };
   },
 
   computed: {
     resultLink() {
       this.copied = false;
-
-      let result = `${this.url.protocol}`;
-      let utms = [];
+      let result = '';
+      let site = '';
+      let params = [];
+      let hash = '';
 
       if (this.url.site) {
-        result += `${this.url.site}/?`;
+        if (this.url.site.includes('://')) {
+          this.url.protocol = this.url.site.split('://')[0] + '://';
+          this.url.site = this.url.site.split('://')[1];
+        }
+        site = this.url.site.split('#')[0].split('/?')[0];
+        if (this.url.site.includes('?'))
+          params = this.url.site.split('?').at(-1).split('/#')[0].split('&');
+        if (this.url.site.includes('#'))
+          hash = this.url.site.split('#').at(-1);
+
+        result = `${this.url.protocol}`;
+        result += `${site}`;
       }
 
       if (this.obligatoryParams.source) {
-        utms.push(`utm_source=${this.obligatoryParams.source}`);
+        params.push(`utm_source=${this.obligatoryParams.source}`);
       }
 
       if (this.obligatoryParams.medium) {
-        utms.push(`utm_medium=${this.obligatoryParams.medium}`);
+        params.push(`utm_medium=${this.obligatoryParams.medium}`);
       }
 
       if (this.obligatoryParams.campaign) {
-        utms.push(`utm_campaign=${this.obligatoryParams.campaign}`);
+        params.push(`utm_campaign=${this.obligatoryParams.campaign}`);
       }
 
       if (this.optionalParams.content) {
-        utms.push(`utm_content=${this.optionalParams.content}`);
+        params.push(`utm_content=${this.optionalParams.content}`);
       }
 
       if (this.optionalParams.term) {
-        utms.push(`utm_term=${this.optionalParams.term}`);
+        params.push(`utm_term=${this.optionalParams.term}`);
       }
 
-      result += utms.join('&');
+      if (params.length)
+        result += '/?' + params.join('&');
+      if (hash)
+        result += '/#' + hash;
+
+      result = result.slice(0, 8) + result.slice(8).replaceAll("//", "/");
 
       return result;
     },
@@ -143,6 +169,18 @@ export default {
     copy() {
       navigator.clipboard.writeText(this.resultLink);
       this.copied = true;
+    },
+    changeTraffic() {
+      if (this.trafficSource === 'Собственный') {
+        this.clean();
+      } else {
+        const traffic = this.traffics[this.trafficSource];
+        this.obligatoryParams.source = traffic.source;
+        this.obligatoryParams.medium = traffic.medium;
+        this.obligatoryParams.campaign = traffic.campaign;
+        this.optionalParams.content = traffic.content;
+        this.optionalParams.term = traffic.term;
+      }
     }
   }
 };
