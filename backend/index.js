@@ -22,6 +22,10 @@ app.use('/info', infoRouter);
 app.use('/params', paramsRouter);
 app.use('/sources', sourcesRouter);
 
+app.get('/test', (req, res) => {
+  res.json({test: true});
+});
+
 async function start() {
   app.listen(PORT, () => console.log(`Server started on port: ${PORT}...`));
 }

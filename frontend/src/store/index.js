@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createStore } from 'vuex';
 
-const URL = 'http://localhost:3000/'
+const URL = 'http://192.168.125.90:3000/'
 
 export default createStore({
   state: {
