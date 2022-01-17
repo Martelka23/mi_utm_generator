@@ -3,6 +3,7 @@ __pycache__/
 media/
 secrets.py
 venv/
+*.sql
 
 # Frontend
 .DS_Store

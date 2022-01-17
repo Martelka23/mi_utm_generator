@@ -3,7 +3,12 @@
   <div class="hero is-light">
     <div class="hero-body" @click="toggleOpen">
       <div class="traffic_header">
-        <img :src="require(`@/assets/images/${traffic.img}`)" alt="yandex_direct">
+        <img
+          v-if="info.image"
+          :src="require(`@/assets/images/${info.image}`)" 
+          :alt="info.platform"
+        >
+        <p v-else class="is-size-3">{{info.platform}}</p>
         <span class="icon is-size-3"><i class="fas fa-chevron-down"></i></span>
       </div>
     </div>
@@ -16,12 +21,16 @@
         :class="{'mvisible': isOpen, 'mhidden': !isOpen}"
       >
         <div class="columns">
-          <div class="column is-4 is-size-4"><strong>Параметр</strong></div>
-          <div class="column is-8 is-size-4"><strong>Значение</strong></div>
+          <div class="column is-3 is-size-4"><strong>Параметр</strong></div>
+          <div class="column is-3 is-size-4"><strong>Значение</strong></div>
+          <div class="column is-6 is-size-4"><strong>Описание</strong></div>
         </div>
-        <div class="columns" v-for="param in traffic.params" :key="param">
-          <div class="column is-4 is-size-4">{{ param.name }}</div>
-          <div class="column is-8 is-size-5">{{ param.value }}</div>
+        <div v-for="param in info.params" :key="param">
+          <div class="columns" v-for="value in param.values" :key="value">
+            <div class="column is-3 is-size-4">{{ param.name }}</div>
+            <div class="column is-3 is-size-4">{{ value.value }}</div>
+            <div class="column is-6 is-size-5">{{ value.description }}</div>
+          </div>
         </div>
       </div>
 
@@ -34,7 +43,19 @@
 export default {
   name: 'TrafficInfo',
 
-  props: ['traffic'],
+  props: {
+    info: {
+      platform: String,
+      image: String,
+      params: [{
+        name: String,
+        values: [{
+          value: String,
+          description: String
+        }]
+      }]
+    }
+  },
 
   data() {
     return {

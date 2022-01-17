@@ -7,7 +7,11 @@
     </div>
 
     <div class="column is-6">
-      <source-input v-model="trafficSource" @changed="changeTraffic"></source-input>
+      <source-input 
+        :title="trafficSource"
+        :traffics="traffics"
+        @changed="changeTraffic"
+      ></source-input>
     </div>
   </div>
   
@@ -24,7 +28,7 @@
     </div>
   </div>
 
-  <div class="hero is-light">
+  <div class="hero is-light mb-6">
     <div class="hero-body">
       <div class="result-header">
         <span class="subtitle is-size-3">Готовая ссылка</span>
@@ -44,13 +48,12 @@
         </div>
       </div>
       <p class="control">
-        <input 
-          type="text" 
-          class="input is-rounded is-medium" 
+        <textarea
+          class="is-rounded is-medium" 
           readonly
           v-model="resultLink"
           style="word-break: break-word;"
-        >
+        />
       </p>
     </div>
   </div>
@@ -89,16 +92,7 @@ export default {
         content: '',
         term: '',
       },
-      copied: false,
-      traffics: {
-        'Яндекс Директ': {
-          source: 'yandex',
-          medium: 'cpc',
-          campaign: '{campaign_id}',
-          content: '{ad_id}',
-          term: '{keyword}'
-        }
-      }
+      copied: false
     };
   },
 
@@ -154,6 +148,10 @@ export default {
 
       return result;
     },
+
+    traffics() {
+      return this.$store.getters.getTraffics;
+    }
   },
 
   methods: {
@@ -170,17 +168,16 @@ export default {
       navigator.clipboard.writeText(this.resultLink);
       this.copied = true;
     },
-    changeTraffic() {
-      if (this.trafficSource === 'Собственный') {
-        this.clean();
-      } else {
-        const traffic = this.traffics[this.trafficSource];
-        this.obligatoryParams.source = traffic.source;
-        this.obligatoryParams.medium = traffic.medium;
-        this.obligatoryParams.campaign = traffic.campaign;
-        this.optionalParams.content = traffic.content;
-        this.optionalParams.term = traffic.term;
-      }
+    changeTraffic(idx) {
+      const traffic = this.traffics[idx];
+
+      this.obligatoryParams.source = traffic.source;
+      this.obligatoryParams.medium = traffic.medium;
+      this.obligatoryParams.campaign = traffic.campaign;
+      this.optionalParams.content = traffic.content;
+      this.optionalParams.term = traffic.term;
+
+      this.trafficSource = traffic.platform;
     }
   }
 };

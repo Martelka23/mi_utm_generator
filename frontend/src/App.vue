@@ -47,6 +47,11 @@ export default {
     isMobile() {
       return window.innerWidth <= 1024;
     }
+  },
+
+  async beforeCreate() {
+    await this.$store.dispatch('loadTraffics');
+    await this.$store.dispatch('loadInfos');
   }
 };
 </script>

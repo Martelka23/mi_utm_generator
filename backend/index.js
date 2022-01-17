@@ -1,18 +1,26 @@
 const path = require('path');
 
+const cors = require('cors');
 const express = require('express');
 require('dotenv').config({ path: './.env' });
 
-const utmRouter = require('./routes/utm.js');
+const infoRouter = require('./routes/infoRouter.js');
+const paramsRouter = require('./routes/paramsRouter.js');
+const sourcesRouter = require('./routes/sourcesRouter.js');
 
 
 const PORT = process.env.PORT;
 
 const app = express();
 
+app.use(cors({
+  origin: '*'
+}));
 app.use(express.json());
 
-app.use('/utm', utmRouter);
+app.use('/info', infoRouter);
+app.use('/params', paramsRouter);
+app.use('/sources', sourcesRouter);
 
 async function start() {
   app.listen(PORT, () => console.log(`Server started on port: ${PORT}...`));

@@ -4,8 +4,8 @@
     <div class="subtitle is-size-3">Источник трафика</div>
     <my-select
       :width="'400px'"
-      :title="modelValue"
-      :options="sources"
+      :title="title"
+      :options="options"
       @update="change"
     ></my-select>
   </div>
@@ -19,30 +19,38 @@ export default {
   name: 'SourceInput',
 
   props: {
-    modelValue: String
+    traffics: {
+      type: Array,
+      required: false,
+      default: []
+    },
+    title: {
+      type: String,
+      required: true
+    }
   },
 
-  emits: ['update:modelValue', 'changed'],
+  emits: ['changed'],
 
   data() {
     return {
-      sources: [
-        { value: 'Собственный', name: 'Собственный' },
-        { value: 'Яндекс Директ', name: 'Яндекс Директ' },
-        { value: 'Instagram', name: 'Instagram' },
-        { value: 'ВКонтакте', name: 'ВКонтакте' },
-        { value: 'YouTube', name: 'YouTube' },
-        { value: 'Facebook', name: 'Facebook' },
-        { value: 'myTarget', name: 'myTarget' },
-        { value: 'Google Ads', name: 'Google Ads' },
-      ]
+
     };
+  },
+
+  computed: {
+    options() {
+      const options = [];
+      for (let i = 0; i < this.traffics.length; i++)
+        options.push({ value: i, name: this.traffics[i].platform });
+
+      return options;
+    }
   },
 
   methods: {
     change(value) {
-      this.$emit('update:modelValue', value);
-      this.$emit('changed')
+      this.$emit('changed', value);
     }
   }
 };

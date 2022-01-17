@@ -1,7 +1,9 @@
 <template>
   <div class="about">
     <traffic-info
-      :traffic="yandex_direct"
+      v-for="info in infos"
+      :key="info.id"
+      :info="info"
     ></traffic-info>
 
     <div class="hero is-light">
@@ -25,16 +27,14 @@ export default {
 
   data() {
     return {
-      yandex_direct: {
-        img: "yandex_direct.png",
-        params: [
-          {name: '{campaign_id}', value: 'Идентификатор рекламной кампании. Передает число.'},
-          {name: '{campaign_name}', value: 'Название кампании. Передает текст до 60 символов.'},
-          {name: '{ad_id}', value: 'Передает число-идентификатор объявления.'},
-          {name: '{keyword}', value: 'Передает текст ключевой фразы, по которой было показано объявление.'},
-        ]
-      },
+      
     };
+  },
+
+  computed: {
+    infos() {
+      return this.$store.getters.getInfos;
+    }
   },
 
   methods: {
