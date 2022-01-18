@@ -4,6 +4,7 @@ media/
 secrets.py
 venv/
 *.sql
+cert/
 
 # Frontend
 .DS_Store
