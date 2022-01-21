@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = 'https://192.168.125.90:3000/api/';
+const URL = 'https://generator.mediainstinctgroup.ru/api/';
 
 export default {
   state: {
