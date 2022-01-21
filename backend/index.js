@@ -21,11 +21,11 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use('/info', infoRouter);
-app.use('/params', paramsRouter);
-app.use('/sources', sourcesRouter);
+app.use('/api/info', infoRouter);
+app.use('/api/params', paramsRouter);
+app.use('/api/sources', sourcesRouter);
 
-app.get('/test', (req, res) => {
+app.get('/api/test', (req, res) => {
   res.json({test: true});
 });
 
