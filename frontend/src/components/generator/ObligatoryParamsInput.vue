@@ -4,29 +4,26 @@
     <div class="subtitle is-size-3">Обязательные параметры</div>
     <label class="is-size-4">Источник кампании</label>
     <p class="control">
-      <textarea  
-        class="is-rounded is-medium mt-3 mb-5" 
-        placeholder="yandex, google, instagram"
+      <my-textarea  
+        :placeholder="'yandex, google, instagram'"
         :value="modelValue.source"
-        @input="change('source', $event.target.value)"
+        @change="newValue => change('source', newValue)"
       />
     </p>
     <label class="is-size-4">Канал трафика</label>
     <p class="control">
-      <textarea 
-        class="is-rounded is-medium mt-3 mb-5" 
-        placeholder="cpc, cpm, social"
+      <my-textarea 
+        :placeholder="'cpc, cpm, social'"
         :value="modelValue.medium"
-        @input="change('medium', $event.target.value)"
+        @change="newValue => change('medium', newValue)"
       />
     </p>
     <label class="is-size-4">Название кампании</label>
     <p class="control">
-      <textarea
-        class="is-rounded is-medium mt-3 mb-5" 
-        placeholder="campaign"
+      <my-textarea
+        :placeholder="'campaign'"
         :value="modelValue.campaign"
-        @input="change('campaign', $event.target.value)"
+        @change="newValue => change('campaign', newValue)"
       />
     </p>
   </div>
@@ -34,8 +31,14 @@
 </template>
 
 <script>
+import MyTextarea from '../UI/MyTextarea.vue';
+
 export default {
   name: 'ParamsInput',
+  
+  components: {
+    MyTextarea
+  },
 
   props: {
     title: String,
@@ -53,22 +56,5 @@ export default {
 </script>
 
 <style>
-textarea {
-  width: 100%;
-  height: 55px;
-  font-size: 20px;
-  padding: calc(0.75rem - 1px);
-  border: #dbdbdb solid 1px;
-  border-radius: 40px;
-  resize: vertical;
-  min-height: 55px;
-}
 
-textarea::placeholder {
-  color: #c6c2c2;
-}
-
-textarea:hover {
-  border-color: #b5b5b5;
-}
 </style>

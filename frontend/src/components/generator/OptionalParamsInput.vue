@@ -4,20 +4,18 @@
     <div class="subtitle is-size-3">Необязательные параметры</div>
     <label class="is-size-4">Содержание объявления</label>
     <p class="control">
-      <textarea
-        class="is-rounded is-medium mt-3 mb-5" 
-        placeholder="content"
+      <my-textarea
+        :placeholder="'content'"
         :value="modelValue.content"
-        @input="change('content', $event.target.value)"
+        @change="newValue => change('content', newValue)"
       />
     </p>
     <label class="is-size-4">Ключевое слово</label>
     <p class="control">
-      <textarea 
-        class="is-rounded is-medium mt-3 mb-5" 
-        placeholder="term"
+      <my-textarea 
+        :placeholder="'term'"
         :value="modelValue.term"
-        @input="change('term', $event.target.value)"
+        @change="newValue => change('term', newValue)"
       />
     </p>
   </div>
@@ -25,8 +23,14 @@
 </template>
 
 <script>
+import MyTextarea from '../UI/MyTextarea.vue';
+
 export default {
   name: 'ParamsInput',
+  
+  components: {
+    MyTextarea
+  },
 
   props: {
     title: String,

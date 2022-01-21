@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import MySelect from './MySelect.vue';
+import MySelect from '../UI/MySelect.vue';
 
 export default {
   components: { MySelect },

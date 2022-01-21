@@ -48,10 +48,10 @@
         </div>
       </div>
       <p class="control">
-        <textarea
-          class="is-rounded is-medium" 
+        <my-textarea
+          id="result"
           readonly
-          v-model="resultLink"
+          :value="resultLink"
           style="word-break: break-word;"
         />
       </p>
@@ -61,7 +61,8 @@
 </template>
 
 <script>
-import SiteInput from '../components/generator/SiteInput.vue'
+import MyTextarea from '../components/UI/MyTextarea.vue';
+import SiteInput from '../components/generator/SiteInput.vue';
 import SourceInput from '../components/generator/SourceInput.vue';
 import OptionalParamsInput from '../components/generator/OptionalParamsInput.vue';
 import ObligatoryParamsInput from '../components/generator/ObligatoryParamsInput.vue';
@@ -70,6 +71,7 @@ export default {
   name: 'GeneratorUtm',
 
   components: {
+    MyTextarea,
     SiteInput,
     SourceInput,
     OptionalParamsInput,
