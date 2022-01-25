@@ -113,9 +113,9 @@ export default {
         }
         site = this.url.site.split('#')[0].split('/?')[0];
         if (this.url.site.includes('?'))
-          params = this.url.site.split('?').at(-1).split('/#')[0].split('&');
+          params = this.url.site.split('?').at(-1).split('/')[0].split('#')[0].split('&');
         if (this.url.site.includes('#'))
-          hash = this.url.site.split('#').at(-1);
+          hash = this.url.site.split('#').at(-1).split('/')[0].split('?')[0];
 
         result = `${this.url.protocol}`;
         result += `${site}`;
@@ -144,7 +144,7 @@ export default {
       if (params.length)
         result += '/?' + params.join('&');
       if (hash)
-        result += '/#' + hash;
+        result += '#' + hash;
 
       result = result.slice(0, 8) + result.slice(8).replaceAll("//", "/");
 
