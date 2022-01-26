@@ -1,10 +1,10 @@
 <template>
-<div>
+<div class="myselect">
   <div class="select__background" v-if="showOptions" @click="showOptions = false"></div>
   <div class="m-select" :style="`width: ${width}`">
     <div class="select__title" @click="showOptions = !showOptions">
       <span>{{ title }}</span>
-      <span class="icon" style="transform: translateY(5px)"><i class="fas fa-chevron-down"></i></span>
+      <span class="icon" style="transform: translateY(1 px)"><i class="fas fa-chevron-down"></i></span>
     </div>
     <ul 
       class="select__options" 
@@ -72,7 +72,7 @@ export default {
 
 .select__title,
 .select__options {
-  font-size: 1.25rem;
+  font-size: 17px;
   color: #363636;
   border: 1px solid #dbdbdb;
   background: white;
@@ -82,8 +82,8 @@ export default {
 
 .select__title {
   justify-content: space-between;
-  height: 50px;
-  padding: 10px;
+  height: 45px;
+  padding: 9px;
 }
 
 .select__title:hover {

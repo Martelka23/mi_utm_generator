@@ -1,7 +1,7 @@
 <template>
 <div class="hero is-light">
-  <div class="hero-body">
-    <div class="subtitle is-size-3">Источник трафика</div>
+  <div class="hero-body pt-5 pb-5">
+    <div class="subtitle is-size-4">Источник трафика</div>
     <my-select
       :width="'400px'"
       :title="title"

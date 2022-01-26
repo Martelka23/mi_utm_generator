@@ -1,8 +1,8 @@
 <template>
 <div class="hero is-light">
-  <div class="hero-body">
-    <div class="subtitle is-size-3">Необязательные параметры</div>
-    <label class="is-size-4">Содержание объявления</label>
+  <div class="hero-body pt-5 pb-5">
+    <div class="subtitle is-size-4">Необязательные параметры</div>
+    <label class="is-size-5">Содержание объявления</label>
     <p class="control">
       <my-textarea
         :placeholder="'content'"
@@ -10,7 +10,7 @@
         @change="newValue => change('content', newValue)"
       />
     </p>
-    <label class="is-size-4">Ключевое слово</label>
+    <label class="is-size-5">Ключевое слово</label>
     <p class="control">
       <my-textarea 
         :placeholder="'term'"

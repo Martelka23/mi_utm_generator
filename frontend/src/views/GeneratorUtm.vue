@@ -29,9 +29,9 @@
   </div>
 
   <div class="hero is-light mb-6">
-    <div class="hero-body">
+    <div class="hero-body pt-5 pb-5">
       <div class="result-header">
-        <span class="subtitle is-size-3">Готовая ссылка</span>
+        <span class="subtitle is-size-4">Готовая ссылка</span>
         <div class="result-buttons">
           <button class="button is-white is-medium is-rounded mr-4" @click="clean" style="width: 185px">
             <span class="icon">

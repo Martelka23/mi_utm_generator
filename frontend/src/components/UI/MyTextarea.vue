@@ -1,6 +1,6 @@
 <template>
   <textarea
-    class="is-rounded is-medium mt-3 mb-5" 
+    class="is-rounded is-medium mt-2 mb-1" 
     style=""
     :placeholder="placeholder"
     :value="(function() {resize(); return value})()"
@@ -34,8 +34,8 @@ export default {
     resize() {
       if (this.$el) {
         setTimeout(() => {
-          this.$el.style.height = '55px';
-          this.$el.style.height = `${this.$el.scrollHeight}px`;
+          this.$el.style.height = '42px';
+          this.$el.style.height = `${this.$el.scrollHeight + 2}px`;
         }, 0);
       }
     }
@@ -46,13 +46,13 @@ export default {
 <style>
 textarea {
   width: 100%;
-  height: 55px;
-  font-size: 20px;
-  padding: calc(0.75rem - 1px);
+  height: 42px;
+  font-size: 17px;
+  padding: 10px;
   border: #dbdbdb solid 1px;
-  border-radius: 40px;
+  border-radius: 20px;
   resize: none;
-  min-height: 55px;
+  min-height: 40px;
 }
 
 textarea:hover {

@@ -1,8 +1,8 @@
 <template>
 <div class="hero is-light">
-  <div class="hero-body">
-    <div class="subtitle is-size-3">Обязательные параметры</div>
-    <label class="is-size-4">Источник кампании</label>
+  <div class="hero-body pt-5 pb-5">
+    <div class="subtitle is-size-4">Обязательные параметры</div>
+    <label class="is-size-5">Источник кампании</label>
     <p class="control">
       <my-textarea  
         :placeholder="'yandex, google, instagram'"
@@ -10,7 +10,7 @@
         @change="newValue => change('source', newValue)"
       />
     </p>
-    <label class="is-size-4">Канал трафика</label>
+    <label class="is-size-5">Канал трафика</label>
     <p class="control">
       <my-textarea 
         :placeholder="'cpc, cpm, social'"
@@ -18,7 +18,7 @@
         @change="newValue => change('medium', newValue)"
       />
     </p>
-    <label class="is-size-4">Название кампании</label>
+    <label class="is-size-5">Название кампании</label>
     <p class="control">
       <my-textarea
         :placeholder="'campaign'"

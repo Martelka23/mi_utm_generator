@@ -3,7 +3,7 @@
   <div class="navbar has-shadow has-text-centered mb-6">
     <div class="havbar-brand">
       <router-link to="/" class="navbar-item">
-        <img src="./assets/images/logo.png" alt="logo" style="max-height: 80px; height: 80px;">
+        <img src="./assets/images/logo.png" alt="logo">
       </router-link>
       <a class="navbar-burger" id="burger" @click="showMobileMenu = !showMobileMenu">
         <span></span>
@@ -57,6 +57,11 @@ export default {
 </script>
 
 <style scoped>
+img {
+  max-height: 60px; 
+  height: 60px;
+}
+
 .underliner:after {
   content: "";
   position: absolute;
@@ -64,7 +69,7 @@ export default {
   height: 3px;
   width: 0;
   left: 0;
-  bottom: 20px;
+  bottom: 13px;
   transition: 0.3s;
 }
 

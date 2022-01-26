@@ -1,7 +1,7 @@
 <template>
 <div class="hero is-light">
-  <div class="hero-body">
-    <div class="subtitle is-size-3">Адрес целевой страницы</div>
+  <div class="hero-body pt-5 pb-5">
+    <div class="subtitle is-size-4">Адрес целевой страницы</div>
     <div class="field has-addons">
       <my-select 
         :title="modelValue.protocol" 
@@ -55,6 +55,10 @@ export default {
 </script>
 
 <style>
+p.control input.input {
+  height: 45px;
+}
+
 select:focus,
 input:focus {
   border-color: black !important;
